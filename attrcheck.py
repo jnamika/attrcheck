@@ -2,8 +2,9 @@
 
 import inspect
 
-def attrcheck(*arguments, **keywords):
-    errmsg = "Error checking argument %r of function %r with hasattr(%r, '%s')"
+def attrcheck(**keywords):
+    errmsg = "Error checking argument %r of function %r" + \
+            ": hasattr(%r, '%s') = False"
     def _(f):
         def check(k, v):
             if k in keywords:
