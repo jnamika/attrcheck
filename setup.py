@@ -3,18 +3,13 @@
 from setuptools import setup
 from setuptools import find_packages
 
-from __init__ import __version__, __license__, __author__, __email__
+from __init__ import __version__, __license__, __author__, __email__, __doc__
 
 setup(
     name         = 'attrcheck',
     version      = __version__,
     description  = 'A simple attribution checker implemented as a decorator',
-    long_description = '''
-attrcheck: attribution checker
-
-This module provides a simple attribution checker implemented as a decorator.
-All functionality are provided as keyword arguments of the decorator.
-    ''',
+    long_description = __doc__,
     author       = __author__,
     author_email = __email__,
     url          = 'https://github.com/jnamika/attrcheck',
