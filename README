@@ -1,0 +1,28 @@
+attrcheck: attribution checker for Python
+
+Copyright (c) 2011, Jun Namikawa <jnamika@gmail.com>
+License: ISC license
+
+
+This is a simple attribution checker implemented as a decorator for Python. All functionality are provided as keyword arguments of the decorator.
+
+
+Example:
+
+    @attrcheck(x=['real'], y=['index', 'strip'], z=dir(list))
+    def func(x,y,z=[]): pass
+
+    func(1, y='y')
+
+    try:
+        func('a', y='y')
+    except AttributeError, e:
+        print e
+    try:
+        func(1, y=2)
+    except AttributeError, e:
+        print e
+    try:
+        func(1, y='y', z=3)
+    except AttributeError, e:
+        print e
