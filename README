@@ -8,19 +8,27 @@ This is a simple attribution checker implemented as a decorator for Python.
 All functionality are provided as keyword arguments of the decorator.
 
 
-Example:
+=== Example ===
 
     @attrcheck(x=['real'], y=['index', 'strip'], z=dir(list))
     def foo(x, y, z=[]): pass
 
-    foo(1, y='y')
-    try:
-        foo('0', y='y')
-    except AttributeError, e:
-        print e
+The code above means the following:
 
-    try:
-        @attrcheck(y=dir(str))
-        def bar(x, y=[]): pass
-    except AttributeError, e:
-        print e
+    def foo(x, y, z=[]):
+        if not hasattr(x, 'real'):
+            raise AttributeError
+        if not hasattr(y, 'index'):
+            raise AttributeError
+        if not hasattr(y, 'strip'):
+            raise AttributeError
+        for name in dir(list):
+            if not hasattr(z, name):
+                raise AttributeError
+
+In addition, attrcheck can check default argument values.
+Thus, the following code throws AttributeError.
+
+    @attrcheck(y=dir(str))
+    def bar(x, y=[]): pass
+

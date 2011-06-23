@@ -8,7 +8,6 @@ from __init__ import __version__, __license__, __author__, __email__
 setup(
     name         = 'attrcheck',
     version      = __version__,
-    py_modulues  = ['attrcheck', 'test_attrcheck'],
     description  = 'A simple attribution checker implemented as a decorator',
     long_description = '''
 attrcheck: attribution checker
