@@ -23,6 +23,14 @@ class TestAttrCheck(unittest.TestCase):
     def test2(self):
         self.assertRaises(AttributeError, self._test2)
 
+    def test3(self):
+        @attrcheck(x=['get'])
+        def func(x):
+            '''Func'''
+            pass
+        self.assertEqual(func.__name__, 'func')
+        self.assertEqual(func.__doc__, 'Func')
+
 if __name__ == '__main__':
     unittest.main()
 

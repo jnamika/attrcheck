@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 import inspect
+from functools import wraps
 
 def attrcheck(**keywords):
     errmsg = "Error checking argument %r of function %r" + \
@@ -16,6 +17,7 @@ def attrcheck(**keywords):
             n = len(spec.args) - len(spec.defaults)
             for i,v in enumerate(spec.defaults):
                 check(spec.args[n+i], v)
+        @wraps(f)
         def __(*args, **kw):
             for i,v in enumerate(args):
                 k = spec.args[i]
