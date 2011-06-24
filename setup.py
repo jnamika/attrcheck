@@ -1,9 +1,11 @@
 # -*- coding:utf-8 -*-
 
 from setuptools import setup
-from setuptools import find_packages
 
-from __init__ import __version__, __license__, __author__, __email__, __doc__
+import sys
+sys.path.append('src')
+
+from src import __version__, __license__, __author__, __email__, __doc__
 
 setup(
     name         = 'attrcheck',
@@ -15,8 +17,9 @@ setup(
     url          = 'https://github.com/jnamika/attrcheck',
     license      = __license__,
     keywords     = 'argument check hasattr decorator',
-    packages     = find_packages(),
-    test_suite = 'test_attrcheck.suite',
+    packages     = ['attrcheck'],
+    package_dir  = {'attrcheck' : 'src'},
+    test_suite   = 'test_attrcheck',
     classifiers  = [
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',

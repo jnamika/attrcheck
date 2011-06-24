@@ -1,11 +1,11 @@
 # -*- coding:utf-8 -*-
 
-import attrcheck
+from attrcheck import attrcheck
 import unittest
 
 class TestAttrCheck(unittest.TestCase):
     def test1(self):
-        @attrcheck.attrcheck(x=['real'], y=['index', 'strip'], z=dir(list))
+        @attrcheck(x=['real'], y=['index', 'strip'], z=dir(list))
         def func(x, y, z=[]): pass
         func(0, 'y')
         func(1, 'y', [])
@@ -17,16 +17,11 @@ class TestAttrCheck(unittest.TestCase):
         self.assertRaises(AttributeError, func, x=1, y='y', z=3)
 
     def _test2(self):
-        @attrcheck.attrcheck(y=dir(str))
+        @attrcheck(y=dir(str))
         def func(x, y=[]): pass
 
     def test2(self):
         self.assertRaises(AttributeError, self._test2)
-
-def suite():
-    suite = unittest.TestSuite()
-    suite.addTests(unittest.makeSuite(TestAttrCheck))
-    return suite
 
 if __name__ == '__main__':
     unittest.main()
