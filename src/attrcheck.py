@@ -4,6 +4,13 @@ import inspect
 from functools import wraps
 
 def attrcheck(**keywords):
+    '''attrcheck(keywords)(function) -> function
+
+To declare attributions of arguments, use this idiom:
+
+@attrcheck(x=['real'], y=['index', 'strip'], z=dir(list))
+def foo(x, y, z=[]): pass'''
+
     errmsg = "Error checking argument %r of function %r" + \
             ": hasattr(%r, '%s') = False"
     def _(f):
@@ -22,7 +29,7 @@ def attrcheck(**keywords):
             for i,v in enumerate(args):
                 k = spec.args[i]
                 check(k, v)
-            for k,v in kw.iteritems():
+            for k,v in kw.items():
                 check(k, v)
             return f(*args, **kw)
         return __
